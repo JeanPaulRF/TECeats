@@ -43,7 +43,7 @@ create table EstadoPedido(
 );
 
 create table TPago(
-	id int primary key auto_increment not null,
+	id int primary key not null,
     nombre varchar(16) not null
 );
 
@@ -62,3 +62,80 @@ create table PedidoXProducto(
     idProducto int not null
 );
 
+create table TMenu(
+	id int primary key not null,
+    nombre varchar(16) not null
+);
+
+create table Menu(
+	id int primary key auto_increment not null,
+    idTMenu int not null
+);
+
+create table MenuXProducto(
+	id int primary key auto_increment not null,
+    idMenu int not null,
+    idProducto int not null
+);
+
+
+
+alter table Producto
+add constraint fkProducto_TProducto
+foreign key (idTProducto)
+references TProducto(id);
+
+alter table Cliente
+add constraint fkCliente_TCliente
+foreign key (idTCliente)
+references TCliente(id);
+
+alter table Usuario
+add constraint fkUsuario_Cliente
+foreign key (idCliente)
+references Cliente(id);
+
+alter table Usuario
+add constraint fkUsuario_Cliente
+foreign key (idCliente)
+references Cliente(id);
+
+alter table Pedido
+add constraint fkPedido_Cliente
+foreign key (idCliente)
+references Cliente(id);
+
+alter table Pedido
+add constraint fkPedido_EstadoPedido
+foreign key (idEstadoPedido)
+references EstadoPedido(id);
+
+alter table Pedido
+add constraint fkPedido_TPago
+foreign key (idTPago)
+references TPago(id);
+
+alter table PedidoXProducto
+add constraint fkPedidoXProducto_Pedido
+foreign key (idPedido)
+references Pedido(id);
+
+alter table PedidoXProducto
+add constraint fkPedidoXProducto_Producto
+foreign key (idProducto)
+references Producto(id);
+
+alter table Menu
+add constraint fkMenu_TMenu
+foreign key (idTMenu)
+references TMenu(id);
+
+alter table MenuXProducto
+add constraint fkMenuXProducto_Menu
+foreign key (idMenu)
+references Menu(id);
+
+alter table MenuXProducto
+add constraint fkMenuXProducto_Producto
+foreign key (idProducto)
+references Producto(id);
