@@ -1,5 +1,7 @@
 create database TECeats;
 
+use TECeats;
+
 create table TProducto(
 	id int primary key not null,
     nombre varchar(32) not null
@@ -11,9 +13,9 @@ create table Producto(
     idTProducto int not null,
     precio int not null,
     descripcion varchar(128) not null,
-    activo bool default(1) not null
+    activo bool default(true) not null
 );
-
+  
 create table TCliente(
 	id int primary key not null,
     nombre varchar(32) not null,
@@ -23,10 +25,11 @@ create table TCliente(
 create table Cliente(
 	id int primary key auto_increment not null,
     nombre varchar(32) not null,
+    identificacion varchar(16) not null,
     idTCliente int not null,
     correo varchar(32) not null,
     telefono varchar(16) not null,
-    activo bool default(1) not null
+    activo bool default(true) not null
 );
 
 create table Usuario(
@@ -34,7 +37,8 @@ create table Usuario(
     username varchar(32) not null,
     passw varchar(32) not null,
     idCliente int not null,
-    administrador bool not null
+    administrador bool not null,
+    activo bool default(true) not null
 );
 
 create table EstadoPedido(
@@ -53,7 +57,8 @@ create table Pedido(
     ubicacion varchar(128) not null,
     fecha date not null,
     idEstadoPedido int not null,
-    idTPago int not null
+    idTPago int not null,
+    activo bool default(true) not null
 );
 
 create table PedidoXProducto(
@@ -69,7 +74,10 @@ create table TMenu(
 
 create table Menu(
 	id int primary key auto_increment not null,
-    idTMenu int not null
+    idTMenu int not null,
+    fechaInicio date not null,
+    fechaFin date not null,
+    activo bool default(true) not null
 );
 
 create table MenuXProducto(
@@ -89,11 +97,6 @@ alter table Cliente
 add constraint fkCliente_TCliente
 foreign key (idTCliente)
 references TCliente(id);
-
-alter table Usuario
-add constraint fkUsuario_Cliente
-foreign key (idCliente)
-references Cliente(id);
 
 alter table Usuario
 add constraint fkUsuario_Cliente
