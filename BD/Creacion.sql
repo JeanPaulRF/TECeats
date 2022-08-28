@@ -29,6 +29,9 @@ create table Cliente(
     idTCliente int not null,
     correo varchar(32) not null,
     telefono varchar(16) not null,
+    carne varchar(32) not null,
+    edad int not null,
+    fechaNacimiento date not null,
     activo bool default(true) not null
 );
 
@@ -69,14 +72,15 @@ create table PedidoXProducto(
 
 create table TMenu(
 	id int primary key not null,
-    nombre varchar(16) not null
+    nombre varchar(16) not null,
+    horaInicio time not null,
+    horaFin datetime not null,
 );
 
 create table Menu(
 	id int primary key auto_increment not null,
+    fecha date not null,
     idTMenu int not null,
-    fechaInicio date not null,
-    fechaFin date not null,
     activo bool default(true) not null
 );
 
