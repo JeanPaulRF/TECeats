@@ -221,6 +221,42 @@ end; $$
 
 
 
+-- PRODUCTO EN PEDIDO
+
+DELIMITER $$
+create procedure insertarProductoEnPedido(
+	in idPedido_ int, 
+	in idProdcto_ int, 
+    in cantidad_ int)
+begin
+	insert into PedidoXProducto (idMenu, idProducto, cantidad) 
+    values(idMenu_, idProducto_, cantidad_);
+end; $$
+
+
+DELIMITER $$
+create procedure actualizarProductoEnPedido(
+	in idPedido_ int, 
+    in idProdcto_ int, 
+    in cantidad_ int)
+begin
+	update PedidoXProducto
+    set cantidad=cantidad_
+    where idMenu=idMenu_
+    and idProducto=idProducto_;
+end; $$
+
+
+DELIMITER $$
+create procedure eliminarProductoEnPedido(in idPedido_ int, in idProdcto_ int)
+begin
+	update PedidoXProducto
+    set activo=false
+    where idMenu=idMenu_
+    and idProducto=idProducto_;
+end; $$
+
+
 -- CRUD MENU
 
 DELIMITER $$
@@ -252,4 +288,33 @@ begin
     set fecha=fecha_,
 		idTMenu=idTMenu_
 	where id=id_;
+end; $$
+
+
+DELIMITER $$
+create procedure deleteMenu(in id_ int)
+begin
+	update Menu
+    set activo=false
+	where id=id_;
+end; $$
+
+
+
+-- PRODUCTO EN MENU
+
+DELIMITER $$
+create procedure insertarProductoEnMenu(in idMenu_ int, in idProdcto_ int)
+begin
+	insert into MenuXProducto (idMenu, idProducto) values(idMenu_, idProducto_);
+end; $$
+
+
+DELIMITER $$
+create procedure eliminarProductoEnMenu(in idMenu_ int, in idProdcto_ int)
+begin
+	update MenuXProducto
+    set activo=false
+    where idMenu=idMenu_
+    and idProducto=idProducto_;
 end; $$

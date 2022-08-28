@@ -67,7 +67,9 @@ create table Pedido(
 create table PedidoXProducto(
 	id int primary key auto_increment not null,
     idPedido int not null,
-    idProducto int not null
+    idProducto int not null,
+    cantidad int not null,
+    activo bool default(true) not null
 );
 
 create table TMenu(
