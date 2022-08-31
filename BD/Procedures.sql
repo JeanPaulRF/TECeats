@@ -1,5 +1,173 @@
 use TECeats;
 
+
+-- CRUD TPRODUCTO
+DELIMITER $$
+create procedure createTProducto(in nombre_ varchar(32))
+begin
+	insert into TProducto(nombre) value(nombre_);
+end; $$
+
+
+DELIMITER $$
+create procedure readTProducto(in id_ int)
+begin
+	select id, nombre from TProducto where id=id_;
+end; $$
+
+
+DELIMITER $$
+create procedure updateTProducto(in nombreOld varchar(32), in nombre_ varchar(32))
+begin
+	update TProducto
+    set nombre=nombre_
+    where nombre=nombreOld;
+end; $$
+
+
+DELIMITER $$
+create procedure deleteTProducto(in nombre_ varchar(32))
+begin
+	delete from TProducto where nombre=nombre_;
+end; $$
+
+
+
+-- CRUD TCliente
+DELIMITER $$
+create procedure createTCliente(in nombre_ varchar(32), in descuento_ bool)
+begin
+	insert into TCliente(nombre, descuento) values(nombre_, descuento_);
+end; $$
+
+
+DELIMITER $$
+create procedure readTCliente(in id_ int)
+begin
+	select id, nombre, descuento from TCliente where id=id_;
+end; $$
+
+
+DELIMITER $$
+create procedure updateTCliente(in nombreOld varchar(32), in nombre_ varchar(32), in descuento_ bool)
+begin
+	update TProducto
+    set nombre=nombre_,
+		descuento=descuento_
+    where nombre=nombreOld;
+end; $$
+
+
+DELIMITER $$
+create procedure deleteTCliente(in nombre_ varchar(32))
+begin
+	delete from TCliente where nombre=nombre_;
+end; $$
+
+
+
+-- CRUD ESTADO PEDIDO
+DELIMITER $$
+create procedure createEstadoPedido(in nombre_ varchar(32))
+begin
+	insert into EstadoPedido(nombre) value(nombre_);
+end; $$
+
+
+DELIMITER $$
+create procedure readEstadoPedido(in id_ int)
+begin
+	select id, nombre from EstadoPedido where id=id_;
+end; $$
+
+
+DELIMITER $$
+create procedure updateEstadoPedido(in nombreOld varchar(32), in nombre_ varchar(32))
+begin
+	update TProducto
+    set nombre=nombre_
+    where nombre=nombreOld;
+end; $$
+
+
+DELIMITER $$
+create procedure deleteEstadoPedido(in nombre_ varchar(32))
+begin
+	delete from EstadoPedido where nombre=nombre_;
+end; $$
+
+
+
+-- CRUD TPAGO
+DELIMITER $$
+create procedure createTPago(in nombre_ varchar(32))
+begin
+	insert into TPago(nombre) value(nombre_);
+end; $$
+
+
+DELIMITER $$
+create procedure readTPago(in id_ int)
+begin
+	select id, nombre from TPago where id=id_;
+end; $$
+
+
+DELIMITER $$
+create procedure updateTPago(in nombreOld varchar(32), in nombre_ varchar(32))
+begin
+	update TPago
+    set nombre=nombre_
+    where nombre=nombreOld;
+end; $$
+
+
+DELIMITER $$
+create procedure deleteTPago(in nombre_ varchar(32))
+begin
+	delete from TPago where nombre=nombre_;
+end; $$
+
+
+
+-- CRUD TMENU
+DELIMITER $$
+create procedure createTMenu(in nombre_ varchar(32), in horaInicio_ time, in horaFin_ time)
+begin
+	insert into TMenu(nombre, fechaInicio, fechaFin) values(nombre_, fechaInicio_, fechaFin_);
+end; $$
+
+
+DELIMITER $$
+create procedure readTMenu(in id_ int)
+begin
+	select id, nombre, fechaInicio, fechaFin from TMenu where id=id_;
+end; $$
+
+
+DELIMITER $$
+create procedure updateTMenu(
+	in nombreOld varchar(32), 
+    in nombre_ varchar(32),
+    in fechaInicio_ time,
+    in fechaFin_ time)
+begin
+	update TMenu
+    set nombre=nombre_,
+		fechaInicio=fechaInicio_,
+        fechaFin=fechaFin_
+    where nombre=nombreOld;
+end; $$
+
+
+DELIMITER $$
+create procedure deleteTMenu(in nombre_ varchar(32))
+begin
+	delete from TMenu where nombre=nombre_;
+end; $$
+
+
+
 -- CRUD PRODUCTO
 DELIMITER $$
 create procedure createProducto(
@@ -318,3 +486,4 @@ begin
     where idMenu=idMenu_
     and idProducto=idProducto_;
 end; $$
+

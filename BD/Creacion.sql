@@ -3,7 +3,7 @@ create database TECeats;
 use TECeats;
 
 create table TProducto(
-	id int primary key not null,
+	id int primary key auto_increment not null,
     nombre varchar(32) not null
 );
 
@@ -17,7 +17,7 @@ create table Producto(
 );
   
 create table TCliente(
-	id int primary key not null,
+	id int primary key auto_increment not null,
     nombre varchar(32) not null,
     descuento bool not null
 );
@@ -50,7 +50,7 @@ create table EstadoPedido(
 );
 
 create table TPago(
-	id int primary key not null,
+	id int primary key auto_increment not null,
     nombre varchar(16) not null
 );
 
@@ -73,10 +73,10 @@ create table PedidoXProducto(
 );
 
 create table TMenu(
-	id int primary key not null,
+	id int primary key auto_increment not null,
     nombre varchar(16) not null,
     horaInicio time not null,
-    horaFin datetime not null,
+    horaFin time not null
 );
 
 create table Menu(
